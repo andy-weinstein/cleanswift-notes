@@ -59,7 +59,6 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   
   // MARK: Routing
   
-    /*
   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
   {
     if let scene = segue.identifier {
@@ -69,7 +68,6 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
       }
     }
   }
- */
   
   // MARK: View lifecycle
   

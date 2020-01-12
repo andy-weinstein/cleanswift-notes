@@ -2,25 +2,12 @@
 
 This is a simple notepad to demonstrate use of the CleanSwift architecture.
 
-TIP: Add screenshots or gifs to make your project description or usage steps more effective.
-
-![name of image](./Screenshots/sample.png)
-
-*Add a little caption for your embedded image like this.*
-
-
-## Project Details
-
-Release | Notes
---------|--------
-[{release_tag}](https://github.com/{username}/{repo_name}/releases/tag/{release_tag}) | Enter your release notes here.
-
 
 ## Usage
 
-To use the app, simply open it up, Select "New" from the file menu,
-write your note, and then "Save". To retrieve an existing note, select
-one from the list.
+To use the app, simply open it up, use the "New Note" button to make a
+new note. Existing notes can be edited or erased (moved to trash) with
+the corresponding buttons. Trash can be emptied with the corresponding button.
 
 
 ## Contributing
