@@ -39,7 +39,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Note"/>
                                 <connections>
-                                    <segue destination="dSb-WR-yV2" kind="show" identifier="NewNoteSegue" id="cmu-kG-7cG"/>
+                                    <segue destination="dSb-WR-yV2" kind="show" identifier="CreateNote" id="cmu-kG-7cG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOm-kM-ETn">
@@ -47,7 +47,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit Note"/>
                                 <connections>
-                                    <segue destination="dSb-WR-yV2" kind="show" identifier="EditNoteSegue" id="btT-1M-iCP"/>
+                                    <segue destination="dSb-WR-yV2" kind="show" identifier="EditNote" id="btT-1M-iCP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlm-Hk-idj">
@@ -116,7 +116,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <segue destination="vOs-Z1-5pS" kind="unwind" unwindAction="doneEditingNote:" id="xNX-oJ-5yb"/>
+                                    <segue destination="vOs-Z1-5pS" kind="unwind" identifier="ListNotes" unwindAction="doneEditingNote:" id="xNX-oJ-5yb"/>
                                 </connections>
                             </button>
                         </subviews>

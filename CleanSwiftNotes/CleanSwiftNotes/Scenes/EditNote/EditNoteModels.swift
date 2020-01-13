@@ -16,16 +16,34 @@ enum EditNote
 {
   // MARK: Use cases
   
-  enum Something
+  enum ShowNote
   {
     struct Request
     {
+        var note : Note?
     }
     struct Response
     {
+        var note : Note?
     }
     struct ViewModel
     {
+        var note: Note?
     }
   }
+    
+    enum CreateNote
+    {
+        struct Request
+        {
+        }
+        struct Response
+        {
+            var note : Note?
+        }
+        struct ViewModel
+        {
+            var note: Note?
+        }
+    }
 }

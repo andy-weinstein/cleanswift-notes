@@ -14,18 +14,24 @@ import UIKit
 
 protocol EditNotePresentationLogic
 {
-  func presentSomething(response: EditNote.Something.Response)
+  func presentNoteToEdit(response: EditNote.ShowNote.Response)
+    func presentCreatedNote(response: EditNote.CreateNote.Response)
 }
 
 class EditNotePresenter: EditNotePresentationLogic
 {
   weak var viewController: EditNoteDisplayLogic?
   
-  // MARK: Do something
-  
-  func presentSomething(response: EditNote.Something.Response)
-  {
-    let viewModel = EditNote.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    // MARK: - Create note
+    
+    func presentCreatedNote(response: EditNote.CreateNote.Response)
+    {
+        let viewModel = EditNote.ShowNote.ViewModel(note: response.note)
+        viewController?.displayNote(viewModel: viewModel)
+    }
+    
+    func presentNoteToEdit(response: EditNote.ShowNote.Response) {
+        let viewModel = EditNote.ShowNote.ViewModel(note: response.note)
+        viewController?.displayNote(viewModel: viewModel)
+    }
 }

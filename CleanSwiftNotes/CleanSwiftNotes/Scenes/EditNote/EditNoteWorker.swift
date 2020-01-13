@@ -14,7 +14,11 @@ import UIKit
 
 class EditNoteWorker
 {
-  func doSomeWork()
-  {
-  }
+    var notesWorker = NotesWorker(notesStore: NotesSimpleStore())
+    
+    func createNote(completionHandler: @escaping (Note?) -> Void) {
+        notesWorker.createNote() { note in
+            completionHandler(note)
+        }
+    }
 }

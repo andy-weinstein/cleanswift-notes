@@ -16,7 +16,7 @@ import UIKit
 
 protocol EditNoteDisplayLogic: class
 {
-  func displaySomething(viewModel: EditNote.Something.ViewModel)
+  func displayNote(viewModel: EditNote.ShowNote.ViewModel)
 }
 
 class EditNoteViewController: UIViewController, EditNoteDisplayLogic
@@ -62,6 +62,8 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
   {
     if let scene = segue.identifier {
+        let request = EditNote.ShowNote.Request(note: Note(title:"", text:(textNote?.text)!,trash: false))
+        interactor?.saveUpdatedNote(request: request)
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
       if let router = router, router.responds(to: selector) {
         router.perform(selector, with: segue)
@@ -74,23 +76,20 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = EditNote.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: EditNote.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
+    showNoteToEdit()
   }
     
+    // MARK: Edit Note
+    func showNoteToEdit()
+    {
+        let request = EditNote.ShowNote.Request()
+        interactor?.showNoteToEdit(request: request)
+    }
 
+  
+  // MARK: Display Note
+  
+    func displayNote(viewModel: EditNote.ShowNote.ViewModel) {
+        textNote?.text = viewModel.note?.text
+    }
 }

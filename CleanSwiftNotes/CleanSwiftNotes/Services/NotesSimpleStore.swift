@@ -26,12 +26,12 @@ class NotesSimpleStore : NotesStoreProtocol {
         completionHandler { return notesArray}
     }
     
-    func createNote(noteToCreate: Note, completionHandler: @escaping (() throws -> Note?) -> Void) {
+    func createNote(completionHandler: @escaping (() throws -> Note?) -> Void) {
         let defaults = UserDefaults.standard
         var activeArray = defaults.stringArray(forKey: "ActiveNotesArray") ?? [String]()
-        activeArray.append(noteToCreate.text)
+        activeArray.append("")
         defaults.set(activeArray, forKey:"ActiveNotesArray")
-        let newNote = Note(title:"",text:noteToCreate.text,trash:false)
+        let newNote = Note(title:"",text:"",trash:false)
         completionHandler { return newNote }
     }
     

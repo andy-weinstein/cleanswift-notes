@@ -34,9 +34,9 @@ class NotesWorker
         }
     }
     
-    func createNote(noteToCreate: Note, completionHandler: @escaping (Note?) -> Void)
+    func createNote(completionHandler: @escaping (Note?) -> Void)
     {
-        notesStore.createNote(noteToCreate: noteToCreate) { (note: () throws -> Note?) -> Void in
+        notesStore.createNote() { (note: () throws -> Note?) -> Void in
             do {
                 let note = try note()
                 DispatchQueue.main.async {
@@ -49,6 +49,7 @@ class NotesWorker
             }
         }
     }
+    
     
     func eraseNote(noteToErase: Note, completionHandler: @escaping (Note?) -> Void)
     {
@@ -89,7 +90,7 @@ protocol NotesStoreProtocol
     // MARK: CRUD operations - Inner closure
     
     func fetchNotes(completionHandler: @escaping (() throws -> [Note]) -> Void)
-    func createNote(noteToCreate: Note, completionHandler: @escaping (() throws -> Note?) -> Void)
+    func createNote(completionHandler: @escaping (() throws -> Note?) -> Void)
     func eraseNote(noteToErase: Note, completionHandler: @escaping (() throws -> Note?) -> Void)
     func permaDeleteErasedNotes(completionHandler: @escaping (() throws -> Bool) -> Void)
     

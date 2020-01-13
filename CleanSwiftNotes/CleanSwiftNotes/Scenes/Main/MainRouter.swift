@@ -14,47 +14,74 @@ import UIKit
 
 @objc protocol MainRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToCreateNote(segue: UIStoryboardSegue?)
+    func routeToEditNote(segue: UIStoryboardSegue?)
 }
 
 protocol MainDataPassing
 {
-  var dataStore: MainDataStore? { get }
+    var dataStore: MainDataStore? { get }
 }
 
 class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
 {
-  weak var viewController: MainViewController?
-  var dataStore: MainDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: MainViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: MainDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    weak var viewController: MainViewController?
+    var dataStore: MainDataStore?
+    
+    // MARK: Routing
+    
+    func routeToCreateNote(segue: UIStoryboardSegue?)
+    {
+        if let segue = segue {
+            let destinationVC = segue.destination as! EditNoteViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreateNote(source: dataStore!, destination: &destinationDS)
+        } else {
+            let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "EditNoteViewController") as! EditNoteViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreateNote(source: dataStore!, destination: &destinationDS)
+            navigateToCreateNote(source: viewController!, destination: destinationVC)
+        }
+    }
+    
+    func routeToEditNote(segue: UIStoryboardSegue?)
+    {
+        if let segue = segue {
+            let destinationVC = segue.destination as! EditNoteViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToEditNote(source: dataStore!, destination: &destinationDS)
+        } else {
+            let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "EditNoteViewController") as! EditNoteViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToEditNote(source: dataStore!, destination: &destinationDS)
+            navigateToEditNote(source: viewController!, destination: destinationVC)
+        }
+    }
+    
+    // MARK: Navigation
+    
+    func navigateToCreateNote(source: MainViewController, destination: EditNoteViewController)
+    {
+        source.show(destination, sender: nil)
+    }
+    
+    func navigateToEditNote(source: MainViewController, destination: EditNoteViewController)
+    {
+        source.show(destination, sender: nil)
+    }
+    
+    // MARK: Passing data
+    
+    func passDataToCreateNote(source: MainDataStore, destination: inout EditNoteDataStore)
+    {
+    }
+    
+    func passDataToEditNote(source: MainDataStore, destination: inout EditNoteDataStore)
+    {
+        let selectedRow = viewController?.listOfNotes?.indexPathForSelectedRow?.row
+        if (selectedRow != nil) {
+            destination.note = (source.notes?[selectedRow!])!
+        }
+    }
 }
+
