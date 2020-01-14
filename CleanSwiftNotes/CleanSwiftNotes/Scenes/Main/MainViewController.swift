@@ -110,7 +110,6 @@ class MainViewController: UIViewController, MainDisplayLogic, UITableViewDelegat
       }
     }
   }
-    
 
   
   // MARK: View lifecycle
@@ -138,6 +137,15 @@ class MainViewController: UIViewController, MainDisplayLogic, UITableViewDelegat
         trashNotes = viewModel.trashNotes
         listOfNotes?.reloadData()
         listOfTrash?.reloadData()
+        if (getNumOfNotes() > 0) {
+            listOfNotes?.selectRow(at: IndexPath(row: 0, section: 0), animated:true, scrollPosition:.none)
+            buttonEditNote?.isEnabled = true
+            buttonEraseNote?.isEnabled = true
+        }
+        else {
+            buttonEditNote?.isEnabled = false
+            buttonEraseNote?.isEnabled = false
+        }
     }
     
     func getNumOfNotes() -> Int {
@@ -149,23 +157,29 @@ class MainViewController: UIViewController, MainDisplayLogic, UITableViewDelegat
     }
     
     func getNoteTitle(_ index : Int) -> String {
-        return editableNotes[index].title
+        return editableNotes[index].content
     }
     
     func getTrashTitle(_ index : Int) -> String {
-        return trashNotes[index].title
+        return trashNotes[index].content
     }
     
     
     @IBAction func doEraseNote(sender: UIControl, forEvent event: UIEvent) {
-        
+        guard let selectedRow = listOfNotes?.indexPathForSelectedRow?.row else {
+            return
+        }
+        let note = editableNotes[selectedRow]
+
+        interactor?.eraseNote(id: note.id)
     }
     
+    
     @IBAction func doEmptyTrash(sender: UIControl, forEvent event: UIEvent) {
-        
+        interactor?.emptyTrash()
     }
     
     @IBAction func doneEditingNote(_ segue: UIStoryboardSegue) {
-        
+        // potentially we might want to reselect the note that was just edited
     }
 }

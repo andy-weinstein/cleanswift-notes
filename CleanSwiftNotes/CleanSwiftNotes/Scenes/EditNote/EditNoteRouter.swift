@@ -58,6 +58,5 @@ class EditNoteRouter: NSObject, EditNoteRoutingLogic, EditNoteDataPassing
   
     func passDataToListNotes(source: EditNoteDataStore, destination: inout MainDataStore)
     {
-        
     }
 }

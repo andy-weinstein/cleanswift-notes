@@ -74,14 +74,20 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
     
     func passDataToCreateNote(source: MainDataStore, destination: inout EditNoteDataStore)
     {
+        destination.note = nil
     }
     
     func passDataToEditNote(source: MainDataStore, destination: inout EditNoteDataStore)
     {
-        let selectedRow = viewController?.listOfNotes?.indexPathForSelectedRow?.row
-        if (selectedRow != nil) {
-            destination.note = (source.notes?[selectedRow!])!
+        guard let selectedRow = viewController?.listOfNotes?.indexPathForSelectedRow?.row else {
+            return
         }
+        guard let note = viewController?.editableNotes[selectedRow] else {
+            return
+        }
+        let noteToEdit = dataStore?.notes?.first(where:{$0.id == note.id})
+        
+        destination.note = noteToEdit
     }
 }
 

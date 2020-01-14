@@ -30,6 +30,7 @@ enum Main
             {
                 struct DisplayedNote
                 {
+                    var id: String
                     var title: String
                     var content: String
                 }

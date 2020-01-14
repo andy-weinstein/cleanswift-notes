@@ -21,4 +21,24 @@ class MainWorker
                 completionHandler(notes)
         }
     }
+    
+    func eraseNotey(id: String, completionHandler: @escaping ([Note]) -> Void) {
+        notesWorker.eraseNote(id: id) { note in
+            // we don't really do anything with the note that was erased
+            // we need to return the new list of notes
+            self.notesWorker.fetchNotes { notes in
+                completionHandler(notes)
+            }
+        }
+    }
+    
+    func emptyTrashy(completionHandler: @escaping ([Note]) -> Void) {
+        notesWorker.permaDeleteErasedNotes() { success in
+             // we don't really look at the success right now
+             // we just return the new list of notes
+            self.notesWorker.fetchNotes { notes in
+                completionHandler(notes)
+            }
+        }
+    }
 }

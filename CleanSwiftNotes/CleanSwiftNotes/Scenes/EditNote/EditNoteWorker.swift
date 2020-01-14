@@ -21,4 +21,16 @@ class EditNoteWorker
             completionHandler(note)
         }
     }
+    
+    func saveNote(noteToSave: Note, completionHandler: @escaping (Note?) -> Void) {
+        notesWorker.saveNote(noteToSave: noteToSave) { note in
+            completionHandler(note)
+        }
+    }
+    
+    func eraseNote(id: String, completionHandler: @escaping (Note?) -> Void) {
+        notesWorker.eraseNote(id: id) { note in
+            completionHandler(note)
+        }
+    }
 }

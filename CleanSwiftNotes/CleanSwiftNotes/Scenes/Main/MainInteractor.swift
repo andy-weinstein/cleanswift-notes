@@ -14,7 +14,9 @@ import UIKit
 
 protocol MainBusinessLogic
 {
-  func fetchNotes(request: Main.ListNotes.FetchNotes.Request)
+    func fetchNotes(request: Main.ListNotes.FetchNotes.Request)
+    func eraseNote(id: String)
+    func emptyTrash()
 }
 
 protocol MainDataStore
@@ -24,6 +26,7 @@ protocol MainDataStore
 
 class MainInteractor: MainBusinessLogic, MainDataStore
 {
+
   var notes: [Note]?
     
   var presenter: MainPresentationLogic?
@@ -39,4 +42,20 @@ class MainInteractor: MainBusinessLogic, MainDataStore
         self.presenter?.presentNotes(response: response)
     }
   }
+    
+    func eraseNote(id: String) {
+        mainWorker.eraseNotey(id: id) { (notes) -> Void in
+            self.notes = notes
+            let response = Main.ListNotes.FetchNotes.Response(notes: self.notes!)
+            self.presenter?.presentNotes(response: response)
+        }
+    }
+    
+    func emptyTrash() {
+        mainWorker.emptyTrashy() { (notes) -> Void in
+            self.notes = notes
+            let response = Main.ListNotes.FetchNotes.Response(notes: self.notes!)
+            self.presenter?.presentNotes(response: response)
+        }
+    }
 }

@@ -8,8 +8,11 @@
 
 import Foundation
 
+let INVALID_NOTE_ID = "0"
+
 struct Note
 {
+    var id: String
     var title : String
     var text : String
     var trash : Bool

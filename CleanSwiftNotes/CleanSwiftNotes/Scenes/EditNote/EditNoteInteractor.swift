@@ -16,11 +16,11 @@ protocol EditNoteBusinessLogic
 {
     func createNote(request: EditNote.CreateNote.Request)
     func showNoteToEdit(request: EditNote.ShowNote.Request)
-      func saveUpdatedNote(request: EditNote.ShowNote.Request)
 }
 
 protocol EditNoteDataStore
 {
+  func saveUpdatedNote(request: EditNote.ShowNote.Request)
   var note: Note? { get set }
 }
 
@@ -29,11 +29,20 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
 
     var presenter: EditNotePresentationLogic?
     var worker = EditNoteWorker()
-    var note: Note?
+    var note: Note? 
     
     // MARK: - Save updated note
     func saveUpdatedNote(request: EditNote.ShowNote.Request) {
-        self.note = request.note
+        guard let newNote = request.note else { return }
+        // don't save empty notes
+        if (newNote.text == "") {
+            worker.eraseNote(id: newNote.id) { (erasedNote: Note?) in
+                self.note = nil
+            }
+        }
+        worker.saveNote(noteToSave: newNote) { (savedNote: Note?) in
+            self.note =  savedNote
+        }
     }
   
     // MARK: - Create note
@@ -51,13 +60,11 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
     
     func showNoteToEdit(request: EditNote.ShowNote.Request)
     {
-        if (request.note == nil){
+        if (note == nil) {
             let createRequest = EditNote.CreateNote.Request()
             createNote(request: createRequest)
         }
-        else if let noteToEdit = request.note {
-            let response = EditNote.ShowNote.Response(note: noteToEdit)
-            presenter?.presentNoteToEdit(response: response)
-        }
+        let response = EditNote.ShowNote.Response(note: note)
+        presenter?.presentNoteToEdit(response: response)
     }
 }

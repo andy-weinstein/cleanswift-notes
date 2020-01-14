@@ -18,6 +18,18 @@ class NotesWorker
         self.notesStore = notesStore
     }
     
+    func generateNoteID() -> String
+    {
+        let id = "\(arc4random())"
+        if (id == INVALID_NOTE_ID) {
+            return generateNoteID()
+        }
+        else {
+            return id
+        }
+    }
+    
+    
     func fetchNotes(completionHandler: @escaping ([Note]) -> Void)
     {
         notesStore.fetchNotes { (notes: () throws -> [Note]) -> Void in
@@ -36,7 +48,8 @@ class NotesWorker
     
     func createNote(completionHandler: @escaping (Note?) -> Void)
     {
-        notesStore.createNote() { (note: () throws -> Note?) -> Void in
+        let id = generateNoteID()
+        notesStore.createNote(id: id) { (note: () throws -> Note?) -> Void in
             do {
                 let note = try note()
                 DispatchQueue.main.async {
@@ -51,9 +64,25 @@ class NotesWorker
     }
     
     
-    func eraseNote(noteToErase: Note, completionHandler: @escaping (Note?) -> Void)
+    func eraseNote(id: String, completionHandler: @escaping (Note?) -> Void)
     {
-        notesStore.eraseNote(noteToErase: noteToErase) { (note: () throws -> Note?) -> Void in
+        notesStore.eraseNote(id: id) { (note: () throws -> Note?) -> Void in
+            do {
+                let note = try note()
+                DispatchQueue.main.async {
+                    completionHandler(note)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completionHandler(nil)
+                }
+            }
+        }
+    }
+    
+    func saveNote(noteToSave: Note, completionHandler: @escaping (Note?) -> Void)
+    {
+        notesStore.saveNote(noteToSave: noteToSave) { (note: () throws -> Note?) -> Void in
             do {
                 let note = try note()
                 DispatchQueue.main.async {
@@ -90,8 +119,9 @@ protocol NotesStoreProtocol
     // MARK: CRUD operations - Inner closure
     
     func fetchNotes(completionHandler: @escaping (() throws -> [Note]) -> Void)
-    func createNote(completionHandler: @escaping (() throws -> Note?) -> Void)
-    func eraseNote(noteToErase: Note, completionHandler: @escaping (() throws -> Note?) -> Void)
+    func createNote(id: String, completionHandler: @escaping (() throws -> Note?) -> Void)
+    func eraseNote(id: String, completionHandler: @escaping (() throws -> Note?) -> Void)
+     func saveNote(noteToSave: Note, completionHandler: @escaping (() throws -> Note?) -> Void)
     func permaDeleteErasedNotes(completionHandler: @escaping (() throws -> Bool) -> Void)
     
 }

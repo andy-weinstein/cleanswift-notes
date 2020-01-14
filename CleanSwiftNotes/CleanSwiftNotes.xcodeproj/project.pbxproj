@@ -19,6 +19,15 @@
 		C07486FE23CB2F77005A7C64 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07486F823CB2F77005A7C64 /* MainRouter.swift */; };
 		C07486FF23CB2F77005A7C64 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07486F923CB2F77005A7C64 /* MainViewController.swift */; };
 		C074870023CB2F77005A7C64 /* MainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07486FA23CB2F77005A7C64 /* MainWorker.swift */; };
+		C0E9017723CDF3080080FCC5 /* NotesSimpleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017223CDF3080080FCC5 /* NotesSimpleStore.swift */; };
+		C0E9017823CDF3080080FCC5 /* NotesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017423CDF3080080FCC5 /* NotesWorker.swift */; };
+		C0E9017923CDF3080080FCC5 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017623CDF3080080FCC5 /* Note.swift */; };
+		C0E9018123CDF3300080FCC5 /* EditNoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017B23CDF32F0080FCC5 /* EditNoteInteractor.swift */; };
+		C0E9018223CDF3300080FCC5 /* EditNoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017C23CDF32F0080FCC5 /* EditNoteModels.swift */; };
+		C0E9018323CDF3300080FCC5 /* EditNotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017D23CDF32F0080FCC5 /* EditNotePresenter.swift */; };
+		C0E9018423CDF3300080FCC5 /* EditNoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017E23CDF32F0080FCC5 /* EditNoteRouter.swift */; };
+		C0E9018523CDF3300080FCC5 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9017F23CDF32F0080FCC5 /* EditNoteViewController.swift */; };
+		C0E9018623CDF3300080FCC5 /* EditNoteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E9018023CDF32F0080FCC5 /* EditNoteWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +66,15 @@
 		C07486F823CB2F77005A7C64 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		C07486F923CB2F77005A7C64 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C07486FA23CB2F77005A7C64 /* MainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWorker.swift; sourceTree = "<group>"; };
+		C0E9017223CDF3080080FCC5 /* NotesSimpleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesSimpleStore.swift; sourceTree = "<group>"; };
+		C0E9017423CDF3080080FCC5 /* NotesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesWorker.swift; sourceTree = "<group>"; };
+		C0E9017623CDF3080080FCC5 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		C0E9017B23CDF32F0080FCC5 /* EditNoteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNoteInteractor.swift; sourceTree = "<group>"; };
+		C0E9017C23CDF32F0080FCC5 /* EditNoteModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNoteModels.swift; sourceTree = "<group>"; };
+		C0E9017D23CDF32F0080FCC5 /* EditNotePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotePresenter.swift; sourceTree = "<group>"; };
+		C0E9017E23CDF32F0080FCC5 /* EditNoteRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNoteRouter.swift; sourceTree = "<group>"; };
+		C0E9017F23CDF32F0080FCC5 /* EditNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
+		C0E9018023CDF32F0080FCC5 /* EditNoteWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNoteWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +125,9 @@
 		C07486C423CB26FE005A7C64 /* CleanSwiftNotes */ = {
 			isa = PBXGroup;
 			children = (
+				C0E9017523CDF3080080FCC5 /* Models */,
+				C0E9017123CDF3080080FCC5 /* Services */,
+				C0E9017323CDF3080080FCC5 /* Workers */,
 				C07486F323CB2C4B005A7C64 /* Scenes */,
 				C07486C523CB26FE005A7C64 /* AppDelegate.swift */,
 				C07486C923CB26FE005A7C64 /* Main.storyboard */,
@@ -138,6 +159,7 @@
 		C07486F323CB2C4B005A7C64 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				C0E9017A23CDF32F0080FCC5 /* EditNote */,
 				C07486F423CB2C6E005A7C64 /* Main */,
 			);
 			path = Scenes;
@@ -154,6 +176,43 @@
 				C07486FA23CB2F77005A7C64 /* MainWorker.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		C0E9017123CDF3080080FCC5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C0E9017223CDF3080080FCC5 /* NotesSimpleStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C0E9017323CDF3080080FCC5 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				C0E9017423CDF3080080FCC5 /* NotesWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		C0E9017523CDF3080080FCC5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C0E9017623CDF3080080FCC5 /* Note.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C0E9017A23CDF32F0080FCC5 /* EditNote */ = {
+			isa = PBXGroup;
+			children = (
+				C0E9017B23CDF32F0080FCC5 /* EditNoteInteractor.swift */,
+				C0E9017C23CDF32F0080FCC5 /* EditNoteModels.swift */,
+				C0E9017D23CDF32F0080FCC5 /* EditNotePresenter.swift */,
+				C0E9017E23CDF32F0080FCC5 /* EditNoteRouter.swift */,
+				C0E9017F23CDF32F0080FCC5 /* EditNoteViewController.swift */,
+				C0E9018023CDF32F0080FCC5 /* EditNoteWorker.swift */,
+			);
+			path = EditNote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,12 +349,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0E9018323CDF3300080FCC5 /* EditNotePresenter.swift in Sources */,
 				C07486FE23CB2F77005A7C64 /* MainRouter.swift in Sources */,
+				C0E9017723CDF3080080FCC5 /* NotesSimpleStore.swift in Sources */,
 				C07486C623CB26FE005A7C64 /* AppDelegate.swift in Sources */,
+				C0E9018223CDF3300080FCC5 /* EditNoteModels.swift in Sources */,
+				C0E9018623CDF3300080FCC5 /* EditNoteWorker.swift in Sources */,
 				C07486FB23CB2F77005A7C64 /* MainInteractor.swift in Sources */,
 				C07486FF23CB2F77005A7C64 /* MainViewController.swift in Sources */,
+				C0E9017923CDF3080080FCC5 /* Note.swift in Sources */,
 				C07486FC23CB2F77005A7C64 /* MainModels.swift in Sources */,
 				C074870023CB2F77005A7C64 /* MainWorker.swift in Sources */,
+				C0E9018423CDF3300080FCC5 /* EditNoteRouter.swift in Sources */,
+				C0E9018123CDF3300080FCC5 /* EditNoteInteractor.swift in Sources */,
+				C0E9017823CDF3080080FCC5 /* NotesWorker.swift in Sources */,
+				C0E9018523CDF3300080FCC5 /* EditNoteViewController.swift in Sources */,
 				C07486FD23CB2F77005A7C64 /* MainPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

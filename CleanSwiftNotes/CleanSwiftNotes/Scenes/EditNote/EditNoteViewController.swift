@@ -24,7 +24,7 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
     
 @IBOutlet weak var textNote : UITextView?
     
-  var interactor: EditNoteBusinessLogic?
+  var interactor: (EditNoteBusinessLogic & EditNoteDataStore)?
   var router: (NSObjectProtocol & EditNoteRoutingLogic & EditNoteDataPassing)?
 
   // MARK: Object lifecycle
@@ -62,7 +62,9 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
   {
     if let scene = segue.identifier {
-        let request = EditNote.ShowNote.Request(note: Note(title:"", text:(textNote?.text)!,trash: false))
+        var note = interactor?.note
+        note?.text = textNote?.text ?? ""
+        let request = EditNote.ShowNote.Request(note: note)
         interactor?.saveUpdatedNote(request: request)
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
       if let router = router, router.responds(to: selector) {
@@ -77,6 +79,7 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   {
     super.viewDidLoad()
     showNoteToEdit()
+    textNote?.becomeFirstResponder()
   }
     
     // MARK: Edit Note

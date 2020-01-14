@@ -29,10 +29,10 @@ class MainPresenter: MainPresentationLogic
     var trashNotes = [Main.ListNotes.FetchNotes.ViewModel.DisplayedNote]()
     for note in response.notes {
         if (note.trash) {
-            trashNotes.append(Main.ListNotes.FetchNotes.ViewModel.DisplayedNote(title:note.title,content:note.text))
+            trashNotes.append(Main.ListNotes.FetchNotes.ViewModel.DisplayedNote(id: note.id, title:note.title,content:note.text))
         }
         else {
-          editableNotes.append(Main.ListNotes.FetchNotes.ViewModel.DisplayedNote(title:note.title,content:note.text))
+            editableNotes.append(Main.ListNotes.FetchNotes.ViewModel.DisplayedNote(id: note.id, title:note.title,content:note.text))
         }
     }
     let viewModel = Main.ListNotes.FetchNotes.ViewModel(editableNotes: editableNotes, trashNotes: trashNotes)
